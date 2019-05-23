@@ -23,12 +23,19 @@ Gengar WebUI Setup, Compiling, Configuration and How to use
 * [GateOne](http://liftoff.github.io/GateOne/About/index.html)
 
 **2.Setup**
+* Decompression the Gengar.tar into the dhmp dir and vis dir
+```javascript
+* the dhmp dir use for running the Gengar's client, watcher and server
+* the vis dir use for running the Gengar's WebUI
+[user @node1 ~]# tar -xvf Gengar.tar
+```
+
 * Modify the configuration in Gengar/vis/src/main/resources/application.properties
 * set the web app port and socket port
 ```javascript
 # set the web app port
 server.port=8080		//default
-# set the socket port
+# set the socket port, the socket port use for Gengar watcher connecting.
 netty.server.port=3333	//default
 ```
 
@@ -68,13 +75,12 @@ Gengar Setup,Compiling,Configuration and How to use
 First, Compiling the Gengar's project. The compile process of client, watcher and server is the same.
 
 ```javascript
-[user @node1 ~]# tar -xvf dhmp.tar
-[user @node1 ~]# cd dhmp
+[user @node1 Gengar]# cd dhmp
 [user @node1 dhmp]# mkdir build && cd build
-[user @node1 build]# cmake .. && make 	//will generate three executable files(client\watcher\server) on the ~/dhmp/bin
+[user @node1 build]# cmake .. && make 	//will generate three executable files(client\watcher\server) on the Gengar/dhmp/bin
 ```
 
-* Update configuration to your Gengar's server configuration through ~/dhmp/bin/config.xml
+* Update configuration to your Gengar's server configuration through Gengar/dhmp/bin/config.xml
 ```javascript
 [Log Level]
 	<log_level>4</log_level>			//ERROR:0; WARN:1; INFO:2; DEBUG:3; TRACE:4;
@@ -92,7 +98,7 @@ First, Compiling the Gengar's project. The compile process of client, watcher an
 
 Make sure your server configuration is correct.
 
-First, running all your server according to the dhmp/bin/config.xml configuration.
+First, running all your server according to the Gengar/dhmp/bin/config.xml configuration.
 ```javascript
 [user @server ~]# cd dhmp/bin
 [user @server ~]# ./server
