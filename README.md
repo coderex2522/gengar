@@ -6,7 +6,7 @@ Gengar has achieved following functions:
 
  * **NVM Allocation and Release**: The application on the Gengar's client controller can request and release NVM memory on the remote server directly through the dhmp_malloc and dhmp_free API.
 
- * **DRAM Allocation and Release**: For Gengar servers, DRAM is a scarce resource. Therefore, the client cannot apply for DRAM resources through the API, and must send a DRAM request request to the remote server through the sniffing package. The server will decide whether to agree to the client's DRAM application based on the memory pressure condition.
+ * **DRAM Allocation and Release**: For Gengar servers, DRAM is a scarce resource. Therefore, the client cannot apply for DRAM resources through the API, and must send a DRAM request request to the remote server through the sniffing package. The server will decide whether to agree to the client's DRAM application based on the memory stress condition.
 
  * **Remote Read/Write**: When a client allocates NVM or DRAM resources from a remote server, it can directly access remote memory resources through the dhmp_read and dhmp_write API interface. Gengar implements remote data access with one-sided RDMA Read/Write Verbs.
 
@@ -82,8 +82,12 @@ First, Compiling the Gengar's project. The compile process of client, watcher an
 
 * Update configuration to your Gengar's server configuration through Gengar/dhmp/bin/config.xml
 ```javascript
-[Log Level]
+[Client Log Level]
 	<log_level>4</log_level>			//ERROR:0; WARN:1; INFO:2; DEBUG:3; TRACE:4;
+
+[watcher]
+	<addr>127.0.0.1</addr>				//connect to the webui. if vis run the machine same as the watcher, this can use the addr "127.0.0.1"
+    <port>3333</port>					//connect to the webui socket port
 
 [Server Configuration]
 	<nic_name>ib0</nic_name>			//RDMA Card Name,through ifconfig look up
