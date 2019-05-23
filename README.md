@@ -87,7 +87,7 @@ First, Compiling the Gengar's project. The compile process of client, watcher an
 
 [watcher]
 	<addr>127.0.0.1</addr>				//connect to the webui. if vis run the machine same as the watcher, this can use the addr "127.0.0.1"
-    <port>3333</port>					//connect to the webui socket port
+    	<port>3333</port>					//connect to the webui socket port
 
 [Server Configuration]
 	<nic_name>ib0</nic_name>			//RDMA Card Name,through ifconfig look up
