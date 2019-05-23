@@ -100,24 +100,24 @@ Make sure your server configuration is correct.
 
 First, running all your server according to the Gengar/dhmp/bin/config.xml configuration.
 ```javascript
-[user @server ~]# cd dhmp/bin
-[user @server ~]# ./server
+[user @server Gengar]# cd dhmp/bin
+[user @server bin]# ./server
 ```
 
 Second, running the watcher.
 ```javascript
-[user @watcher ~]# cd dhmp/bin
-[user @watcher ~]# ./watcher
+[user @watcher Gengar]# cd dhmp/bin
+[user @watcher bin]# ./watcher
 ```
 
 Finally, running the client.
 ```javascript
-[user @client ~]# cd dhmp/bin
+[user @client Gengar]# cd dhmp/bin
 # comand line format:./client size readnum writenum
 # for example, the client will allocate the object size is 65536
 # and will exec the remote read num is 10000
 # and will exec the remote write num is 20000
-[user @client ~]# ./client 65536 10000 20000
+[user @client bin]# ./client 65536 10000 20000
 ```
 
 **4. How to use Gengar API**
