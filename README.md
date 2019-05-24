@@ -98,19 +98,26 @@ First, Compiling the Gengar's project. The compile process of client, watcher an
 * Update configuration to your Gengar's server configuration through Gengar/dhmp/bin/config.xml
 ```javascript
 [Client Log Level]
+<client>
 	<log_level>4</log_level>			//ERROR:0; WARN:1; INFO:2; DEBUG:3; TRACE:4;
+</client>
 
-[watcher]
+[Watcher Configuration]
+<watcher>
 	<addr>127.0.0.1</addr>				//connect to the webui. if vis run the machine same as the watcher, this can use the addr "127.0.0.1"
     	<port>3333</port>				//connect to the webui socket port
+</watcher>
 
+# Note:Each pair of labels <server> represents a server. Each Server must be running.
 [Server Configuration]
+<server>
 	<nic_name>ib0</nic_name>			//RDMA Card Name,through ifconfig look up
 	<addr>xxx.xxx.xxx.xxx</addr>			//Server's RDMA Card Address
 	<port>39300</port>				//Server's listen port
 	<rdelay>200</rdelay>				//express the read latency of server's NVM is 200ns
 	<wdelay>800</wdelay>				//express the write latency of server's NVM is 800ns
 	<knum>1</knum>					//express the CPU parallelism of server is 1
+</server>
 ```
 
 **3. Running**
@@ -157,6 +164,7 @@ void dhmp_free(void *dhmp_addr);
 ```
 
 **5. How to test Gengar API**
+
 Benchmark: We allocate 30,000 objects of size 512KB and perform 100,000 reads and 100,000 writes to the remote server.
 ```javascript
 [user @client Gengar]# cd dhmp/bin
