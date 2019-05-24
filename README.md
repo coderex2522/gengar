@@ -14,12 +14,18 @@ The Web Image of Gengar Servers Memory Usage
 ------------
 ![image](https://github.com/coderex2522/gengar/blob/master/images/gengar.jpg)
 
-DRAM Used: indicates the total amount of DRAM used by the current server to all remote clients. 
+DRAM Used: indicates the total amount of DRAM used by the current server to all remote clients.
+
 DRAM Unused: indicates the remaining DRAM space of the current server.
+
 DRAM Total: indicates the total DRAM space owned by the current server.
+
 NVM Used: indicates the total amount of NVM used by the current server to all remote clients. 
+
 NVM Unused: indicates the remaining NVM space of the current server.
+
 NVM Total: indicates the total NVM space owned by the current server.
+
 Action Button: shows the proportion of memory resources used by each client in the occupied server memory space.
 
 Note:Run Gengar WebUI and Gengar
