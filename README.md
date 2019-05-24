@@ -87,9 +87,14 @@ netty.server.port=3333	//default
 * Then enter `https://machine_ip:port` in the browser address bar.
 * If the screenshot below appears, it proves that the GateOne installation is successful.
 ![image](https://github.com/coderex2522/gengar/blob/master/images/CertifiedGateoneScreenshot.png)
-* After GateOne has been successfully run, configure the address of GateOne in the `vis/src/main/resources/static/pages/memory-usage/memory-usage-table.js` file:
+* After GateOne has been successfully run, configure the address of GateOne in the `vis/src/main/resources/static/pages/terminal/terminal.js
+` file:
 ```javascript 1.8
-var gateOneUrl = "https://machine_ip:port";
+function initWebShell() {
+  GateOne.init({
+    url: "https://machine_ip:port"
+  });
+}
 ```
 * Then re-execute according to the compilation and operation of Step 3.
 * After successful operation, the browser will display a home page. There will be a `Terminal` button at the top of the home page, click this button to enter the Web SSH interface.
