@@ -86,7 +86,7 @@ netty.server.port=3333	//default
 * Assume that the IP address of the installed machine node is `machine_ip`.
 * Then enter `https://machine_ip:port` in the browser address bar.
 * If the screenshot below appears, it proves that the GateOne installation is successful.
-![image](https://github.com/coderex2522/gengar/blob/master/images/GateOne.png)
+![image](https://github.com/coderex2522/gengar/blob/master/images/CertifiedGateoneScreenshot.png)
 * After GateOne has been successfully run, configure the address of GateOne in the `vis/src/main/resources/static/pages/memory-usage/memory-usage-table.js` file:
 ```javascript 1.8
 var gateOneUrl = "https://machine_ip:port";
