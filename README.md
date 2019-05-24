@@ -14,13 +14,13 @@ The Web Image of Gengar Servers Memory Usage
 ------------
 ![image](https://github.com/coderex2522/gengar/blob/master/images/gengar.jpg)
 
-DRAM Used: indicates the total amount of DRAM used by the current server to all remote clients.
-DRAM Unused: indicates the remaining DRAM space of the current server.
-DRAM Total: indicates the total DRAM space owned by the current server.
-NVM Used: indicates the total amount of NVM used by the current server to all remote clients.
-NVM Unused: indicates the remaining NVM space of the current server.
-NVM Total: indicates the total NVM space owned by the current server.
-Action Button: shows the proportion of memory resources used by each client in the occupied server memory space.
+**DRAM Used**: indicates the total amount of DRAM used by the current server to all remote clients.
+**DRAM Unused**: indicates the remaining DRAM space of the current server.
+**DRAM Total**: indicates the total DRAM space owned by the current server.
+**NVM Used**: indicates the total amount of NVM used by the current server to all remote clients.
+**NVM Unused**: indicates the remaining NVM space of the current server.
+**NVM Total**: indicates the total NVM space owned by the current server.
+**Action Button**: shows the proportion of memory resources used by each client in the occupied server memory space.
 
 Note:Run Gengar WebUI and Gengar
 ------------
@@ -136,10 +136,8 @@ Second, running the watcher.
 [user @watcher bin]# ./watcher
 ```
 
-Finally, you can write client programs using the Gengar API. Sample code such as Gengar/dhmp/test/sample_client.c.
-
-
-**4. How to use Gengar API**
+Finally, you can write client programs using the Gengar API. 
+**How to use Gengar API**
 ```javascript
 #include <dhmp.h>
 /**
@@ -162,8 +160,37 @@ int dhmp_write(void *dhmp_addr, void * local_buf, size_t count);
  */
 void dhmp_free(void *dhmp_addr);
 ```
+**Sample code**
+```javascript
+#include <stdio.h>
+#include <dhmp.h>
 
-**5. How to test Gengar API**
+int main(int argc,char *argv[])
+{
+	void *addr;
+	int size=65536;
+	char *str;
+
+	str=malloc(size);
+	snprintf(str, size, "hello world");
+	
+	dhmp_client_init();
+
+	addr=dhmp_malloc(size);
+	
+	dhmp_write(addr, str, size);
+
+	dhmp_read(addr, str, size);
+	
+	dhmp_free(addr);
+	
+	dhmp_client_destroy();
+
+	return 0;
+}
+```
+
+**4. How to test Gengar API**
 
 Benchmark: We allocate 30,000 objects of size 512KB and perform 100,000 reads and 100,000 writes to the remote server.
 ```javascript
