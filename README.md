@@ -35,7 +35,6 @@ Gengar WebUI Setup, Compiling, Configuration and How to use
 &#160; &#160; &#160; &#160; Before run the WebUI of Gengar, it's essential that you have already install dependencies listing below.
 * jdk 8+
 * maven 3+
-* [GateOne](http://liftoff.github.io/GateOne/About/index.html)
 
 **2.Setup**
 * Decompression the Gengar.tar into the dhmp dir and vis dir
@@ -46,23 +45,18 @@ Gengar WebUI Setup, Compiling, Configuration and How to use
 ```
 
 * Modify the configuration in Gengar/vis/src/main/resources/application.properties
-* set the web app port and socket port
+* Set the web app port to be the same as the port your server is open to.
+* Set the socket port to be the same as the watcher port in the configuration file (Gengar/dhmp/bin/config.xml) 
 ```javascript
 # set the web app port
-server.port=8080		//default
+server.port=8080		
 # set the socket port, the socket port use for Gengar watcher connecting.
 netty.server.port=3333	//default
 ```
 
-* Modify the websocket ip addr and port(the same to the webUI ip and port) configuration 
-* in Gengar/vis/src/main/resources/static/pages/memory-usage/memory-usage-table.js
-```javascript
-var wsUrl = "ip:port";
-var gateOneUrl = "https://your-gateone-server/";
-```
-
 **3.Running**
-* The first mode of running
+**There are two ways of running the WebUI.**
+* The first way of running by JAVA.
 ```javascript
 [user @node1 ~]# cd Gengar/vis/
 [user @node1 vis]# mvn package
@@ -70,12 +64,36 @@ var gateOneUrl = "https://your-gateone-server/";
 [user @node1 target]# java -jar vis-1.0.0.jar
 ```
 
-* The second mode of running
+* The second way of running by Maven.
 ```javascript
 # use the maven running
 [user @node1 ~]# cd Gengar/vis/
 [user @node1 vis]# mvn spring-boot:run
 ```
+
+**4.Usage**
+* Enter your server ip and listen port in the browser address bar (this port is the `server.port` abovementioned)
+* eg：http://`ip`:`port`
+* If the screenshot below appears, it means the operation is successful.
+![image](https://github.com/coderex2522/gengar/blob/master/images/WebUI.png)
+
+**At this point, the basic Web UI interface has been deployed. If you need Web SSH functionality, please see below.**
+
+**4.Web SSH (Optional)
+* Install [GateOne](http://liftoff.github.io/GateOne/About/index.html)
+* Certified GateOne: 
+* When you run GateOne for the first time, it creates a default configuration file `/gateone/settings/10server.conf`, where you can find the port number `port` it listens on.
+* Assume that the IP address of the installed machine node is `machine_ip`.
+* Then enter `https://machine_ip:port` in the browser address bar.
+* If the screenshot below appears, it proves that the GateOne installation is successful.
+![image](https://github.com/coderex2522/gengar/blob/master/images/GateOne.png)
+* After GateOne has been successfully run, configure the address of GateOne in the `vis/src/main/resources/static/pages/memory-usage/memory-usage-table.js` file:
+```javascript 1.8
+var gateOneUrl = "https://machine_ip:port";
+```
+* Then re-execute according to the compilation and operation of Step 3.
+* After successful operation, the browser will display a home page. There will be a `Terminal` button at the top of the home page, click this button to enter the Web SSH interface.
+* Note: If an authentication failure error occurs, please enter `https://machine_ip:port` in the address bar of the browser, and then try again.
 
 Gengar Setup,Compiling,Configuration and How to use
 ------------
@@ -198,4 +216,4 @@ Benchmark: We allocate 30,000 objects of size 512KB and perform 100,000 reads an
 [user @client bin]# ./test.sh
 ```
 ## Support or Contact
-If you have any questions, please contact ZhuoHui Duan(zhduan@hust.edu.cn), Haikun Liu (hkliu@hust.edu.cn) Xin Zhang (xinzh@hust.edu.cn) and Xiaofei Liao (xfliao@hust.edu.cn).
+If you have any questions, please contact ZhuoHui Duan(zhduan@hust.edu.cn), Haikun Liu (hkliu@hust.edu.cn), Xin Zhang (rex6817@gmail.com), Cong Liu (codinglzc@gmail.com) and Xiaofei Liao (xfliao@hust.edu.cn).
