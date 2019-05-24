@@ -14,6 +14,21 @@ The Web Image of Gengar Servers Memory Usage
 ------------
 ![image](https://github.com/coderex2522/gengar/blob/master/images/gengar.jpg)
 
+DRAM Used: indicates the total amount of DRAM used by the current server to all remote clients. 
+DRAM Unused: indicates the remaining DRAM space of the current server.
+DRAM Total: indicates the total DRAM space owned by the current server.
+NVM Used: indicates the total amount of NVM used by the current server to all remote clients. 
+NVM Unused: indicates the remaining NVM space of the current server.
+NVM Total: indicates the total NVM space owned by the current server.
+Action Button: shows the proportion of memory resources used by each client in the occupied server memory space.
+
+Note:Run Gengar WebUI and Gengar
+------------
+1. Gengar.tar contains the dhmp dir(Distributed Hybrid Memory Pool=>dhmp project) and vis dir(Gengar WebUI project).
+2. You must run the Gengar WebUI before you can run Gengar(dhmp project).
+3. dhmp project needs to be built and run on each server and one watcher.
+4. Gengar WebUI project needs to be built and run on one machine.
+
 Gengar WebUI Setup, Compiling, Configuration and How to use
 ------------
 **1.External Dependencies**  
@@ -114,15 +129,8 @@ Second, running the watcher.
 [user @watcher bin]# ./watcher
 ```
 
-Finally, running the client.
-```javascript
-[user @client Gengar]# cd dhmp/bin
-# comand line format:./client size readnum writenum
-# for example, the client will allocate the object size is 65536
-# and will exec the remote read num is 10000
-# and will exec the remote write num is 20000
-[user @client bin]# ./client 65536 10000 20000
-```
+Finally, you can write client programs using the Gengar API. Sample code such as Gengar/dhmp/test/sample_client.c.
+
 
 **4. How to use Gengar API**
 ```javascript
@@ -148,5 +156,11 @@ int dhmp_write(void *dhmp_addr, void * local_buf, size_t count);
 void dhmp_free(void *dhmp_addr);
 ```
 
+**5. How to test Gengar API**
+Benchmark: We allocate 30,000 objects of size 512KB and perform 100,000 reads and 100,000 writes to the remote server.
+```javascript
+[user @client Gengar]# cd dhmp/bin
+[user @client bin]# ./test.sh
+```
 ## Support or Contact
 If you have any questions, please contact ZhuoHui Duan(zhduan@hust.edu.cn), Haikun Liu (hkliu@hust.edu.cn) and Xiaofei Liao (xfliao@hust.edu.cn).
